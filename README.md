@@ -36,5 +36,5 @@ Portfolio statique en une page, bilingue (FR/EN), présentant :
 
 ## Contact
 
-📧 contact@lydiaharrache.fr
-🔗 [LinkedIn](https://www.linkedin.com/in/lydia-harrache/)
+ contact@lydiaharrache.fr
+ [LinkedIn](https://www.linkedin.com/in/lydia-harrache/)
