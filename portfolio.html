@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Power Platform &amp; BI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f6f8fb; --ink-2:#ffffff;
+    --chalk:#17203a; --chalk-dim:rgba(23,32,58,0.64);
+    --amber:#12b3a3; --slate:#7b61ff; --sage:#ff6b6b;
+    --line:rgba(23,32,58,0.10); --line-strong:rgba(23,32,58,0.18);
+    --display:'Space Grotesk',sans-serif; --body:'IBM Plex Sans',sans-serif; --mono:'IBM Plex Mono',monospace;
+    --card-shadow:0 2px 10px rgba(23,32,58,0.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--ink);color:var(--chalk);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(246,248,251,0.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:960px;margin:0 auto;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-0.01em;}
+  .brand span{color:var(--amber);}
+  nav.links{display:flex;gap:18px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em;align-items:center;flex-wrap:wrap;}
+  nav.links a{text-decoration:none;color:var(--chalk-dim);transition:color .2s;}
+  nav.links a:hover,nav.links a:focus-visible{color:var(--amber);}
+  #langToggle{background:transparent;border:1px solid var(--line-strong);color:var(--chalk);font-family:var(--mono);font-size:11.5px;padding:6px 10px;border-radius:3px;cursor:pointer;letter-spacing:.05em;}
+  #langToggle:hover{border-color:var(--amber);color:var(--amber);}
+
+  /* ---------- HERO with canvas network ---------- */
+  .hero{position:relative;height:calc(100vh - 50px);min-height:620px;display:flex;align-items:center;justify-content:center;padding:40px 28px 70px;overflow:hidden;text-align:center;}
+  .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.85;}
+  .hero-inner{position:relative;max-width:760px;margin:0 auto;}
+  .typed-line{font-family:var(--mono);font-size:18px;color:var(--chalk);margin-bottom:16px;min-height:26px;text-align:center;}
+  .hero p.lede{font-size:17.5px;max-width:56ch;color:var(--chalk-dim);margin:0 auto 14px;}
+  .hero-cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap;justify-content:center;}
+  .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--chalk-dim);letter-spacing:.08em;text-transform:uppercase;animation:bob 2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,6px);}}
+  @media (prefers-reduced-motion:reduce){.scroll-hint{animation:none;}}
+  .hero-eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--slate);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;}
+  .typed-line .prompt{color:var(--amber);font-weight:600;}
+  .typed-line .type-target{font-weight:600;}
+  .cursor{display:inline-block;color:var(--amber);animation:blink 1s step-start infinite;}
+  @media (prefers-reduced-motion:reduce){.cursor{animation:none;}}
+  @keyframes blink{50%{opacity:0;}}
+  .hero h1{font-size:clamp(30px,5.5vw,50px);line-height:1.12;margin:0 0 14px;font-family:var(--display);font-weight:600;letter-spacing:-0.01em;}
+  .btn{font-family:var(--mono);font-size:13px;text-decoration:none;padding:12px 22px;border-radius:999px;letter-spacing:.03em;display:inline-block;transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s;cursor:pointer;border:none;}
+  .btn:hover{transform:translateY(-2px) scale(1.03);}
+  .btn-primary{background:var(--amber);color:#ffffff;font-weight:600;box-shadow:0 4px 14px rgba(18,179,163,0.32);}
+  .btn-primary:hover{box-shadow:0 6px 18px rgba(18,179,163,0.42);}
+  .btn-ghost{border:1.5px solid var(--line-strong);color:var(--chalk);background:var(--ink-2);}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+
+  .flow{position:relative;}
+  .flow::before{content:"";position:absolute;left:28px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--line-strong) 4%,var(--line-strong) 96%,transparent);}
+  @media (max-width:640px){.flow::before{left:16px;}}
+  .node{position:relative;max-width:960px;margin:0 auto;padding:56px 28px 56px 60px;}
+  @media (max-width:640px){.node{padding-left:40px;padding-right:20px;}}
+  .node-marker{position:absolute;left:28px;top:62px;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;background:var(--ink);border:2px solid var(--amber);}
+  @media (max-width:640px){.node-marker{left:16px;}}
+
+  h2{font-size:27px;font-family:var(--display);font-weight:600;margin:0 0 12px;letter-spacing:-0.01em;}
+  h3{font-family:var(--display);font-weight:600;margin:0 0 6px;}
+  p{color:var(--chalk-dim);margin:0 0 14px;max-width:62ch;}
+
+  /* Mode chooser (hero) */
+  .choice-prompt{font-family:var(--mono);font-size:12.5px;color:var(--slate);text-transform:uppercase;letter-spacing:.08em;margin:28px 0 12px;}
+  .mode-choice{display:flex;max-width:520px;margin:0 auto;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);}
+  @media (max-width:560px){.mode-choice{flex-direction:column;}}
+  .mode-card{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;
+    padding:26px 18px;border-right:1px solid var(--line-strong);
+  }
+  .mode-choice a.mode-card:last-child{border-right:none;}
+  @media (max-width:560px){.mode-card{border-right:none;border-bottom:1px solid var(--line-strong);} .mode-card:last-child{border-bottom:none;}}
+  .mode-title{font-family:var(--display);font-weight:600;font-size:17px;color:var(--chalk);padding-bottom:9px;border-bottom:2px solid transparent;transition:border-color .2s;}
+  .mode-sub{font-family:var(--mono);font-size:11px;color:var(--chalk-dim);}
+  .mode-card-dev{background:rgba(18,179,163,0.055);}
+  .mode-card-dev .mode-title{color:var(--amber);}
+  .mode-card-dev:hover .mode-title{border-color:var(--amber);}
+  .mode-card-teach:hover .mode-title{border-color:var(--sage);}
+  .hero-secondary{margin-top:22px;font-family:var(--mono);font-size:12px;color:var(--chalk-dim);}
+  .hero-secondary a{text-decoration:none;color:var(--chalk-dim);border-bottom:1px solid transparent;}
+  .hero-secondary a:hover{color:var(--chalk);border-bottom-color:var(--chalk-dim);}
+  .hero-secondary .dot{margin:0 8px;opacity:.5;}
+
+  /* Mode bar under nav */
+  .mode-bar{
+    display:flex;gap:14px;align-items:center;justify-content:center;
+    background:var(--ink-2);border-bottom:1px solid var(--line);
+    padding:8px 20px;font-family:var(--mono);font-size:12px;color:var(--chalk-dim);
+  }
+  .mode-bar-btn{
+    background:transparent;border:1px solid var(--line-strong);color:var(--chalk);
+    font-family:var(--mono);font-size:11.5px;padding:4px 10px;border-radius:999px;cursor:pointer;
+  }
+  .mode-bar-btn:hover{border-color:var(--amber);color:var(--amber);}
+
+  /* Filtering by chosen mode */
+  body.pre-choice .flow,
+  body.pre-choice .mode-bar,
+  body.pre-choice footer{display:none;}
+  body.mode-dev .node[data-mode="teach"],
+  body.mode-dev .nav-teach{display:none;}
+  body.mode-teach .node[data-mode="dev"],
+  body.mode-teach .nav-dev{display:none;}
+  .cv-card{
+    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+    border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    padding:24px 0;margin-top:18px;
+  }
+  .cv-card h3{font-size:19px;margin-bottom:4px;}
+  .cv-card p{margin:0;font-size:14px;}
+  .cv-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* Accordion competencies */
+  details.tier{border-top:1px solid var(--line);background:transparent;margin-top:0;overflow:hidden;}
+  details.tier:last-child{border-bottom:1px solid var(--line);}
+  details.tier summary{
+    cursor:pointer;list-style:none;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--display);font-weight:600;font-size:15.5px;
+  }
+  details.tier summary::-webkit-details-marker{display:none;}
+  details.tier summary .arrow{font-family:var(--mono);color:var(--amber);transition:transform .2s;font-size:13px;}
+  details.tier[open] summary .arrow{transform:rotate(90deg);}
+  details.tier summary .tier-sub{font-family:var(--mono);font-size:11.5px;color:var(--slate);font-weight:400;margin-left:10px;}
+  .tier-body{padding:0 20px 18px;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:7px;}
+  .pill{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border:1px solid var(--line-strong);border-radius:999px;color:var(--chalk-dim);}
+  .fine{font-size:12.5px;color:var(--chalk-dim);margin-top:10px;font-style:italic;}
+
+  .entry-list,.project-list{display:flex;flex-direction:column;margin-top:20px;}
+  .entry,.project{padding:18px 0;border-bottom:1px solid var(--line);}
+  .entry:last-child,.project:last-child{border-bottom:none;}
+  .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px;}
+  .entry-head h3{font-size:16px;margin:0;}
+  .entry-meta{font-family:var(--mono);font-size:11.5px;color:var(--slate);white-space:nowrap;}
+  .entry p,.project p{margin-bottom:0;font-size:14px;}
+  .project{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;}
+  .project h3{font-size:16px;margin-bottom:6px;}
+  .project .tag{font-family:var(--mono);font-size:11px;color:var(--amber);white-space:nowrap;padding-top:3px;}
+
+  .teach-subhead{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--sage);margin:30px 0 4px;}
+  .subject-grid-rich{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:6px;border-top:1px solid var(--line);}
+  @media (max-width:640px){.subject-grid-rich{grid-template-columns:1fr;}}
+  .subject-rich{
+    padding:20px 24px;border-bottom:1px solid var(--line);
+  }
+  .subject-rich:nth-child(odd){border-right:1px solid var(--line);}
+  @media (max-width:640px){.subject-rich:nth-child(odd){border-right:none;} .subject-rich{padding:18px 16px;}}
+  .subject-rich h3{font-size:15.5px;margin-bottom:6px;}
+  .subject-rich p{font-size:12.5px;margin-bottom:8px;}
+  .subject-level{font-family:var(--mono);font-size:11px;color:var(--sage);font-weight:600;}
+  .approach-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;}
+  @media (max-width:700px){.approach-row{grid-template-columns:1fr;}}
+  .approach-item{border-left:2px solid var(--sage);padding:4px 0 4px 14px;}
+  .approach-item strong{display:block;font-family:var(--display);font-size:14.5px;margin-bottom:4px;color:var(--chalk);}
+  .approach-item p{font-size:12.5px;margin:0;}
+
+  /* Contact form */
+  form.contact-form{margin-top:22px;display:grid;gap:14px;max-width:560px;}
+  .form-row{display:flex;flex-direction:column;gap:6px;}
+  .form-row label{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);}
+  .form-row input,.form-row textarea{
+    background:var(--ink-2);border:1px solid var(--line-strong);border-radius:5px;color:var(--chalk);
+    font-family:var(--body);font-size:14.5px;padding:11px 13px;resize:vertical;
+  }
+  .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--amber);}
+  .form-status{font-family:var(--mono);font-size:12.5px;color:var(--sage);min-height:16px;}
+  .contact-alt{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;}
+  .contact-card{border:1px solid var(--line);border-radius:6px;padding:16px 18px;font-family:var(--mono);font-size:13px;min-width:200px;background:var(--ink-2);}
+  .contact-card .label{color:var(--slate);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+
+  footer{text-align:center;padding:36px 28px 48px;font-family:var(--mono);font-size:11.5px;color:var(--chalk-dim);border-top:1px solid var(--line);}
+
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    .subject{transition:transform .15s,border-color .15s;}
+  }
+  :focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+</style>
+</head>
+<body class="pre-choice">
+
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Lydia Harrache<span>.</span></div>
+    <nav class="links">
+      <a href="#about" class="i18n" data-en="About" data-fr="À propos">About</a>
+      <a href="#skills" class="nav-dev i18n" data-en="Skills" data-fr="Compétences">Skills</a>
+      <a href="#experience" class="nav-dev i18n" data-en="Experience" data-fr="Expérience">Experience</a>
+      <a href="#projects" class="nav-dev i18n" data-en="Work" data-fr="Projets">Work</a>
+      <a href="#teach" class="nav-teach i18n" data-en="Teach" data-fr="Enseignement">Teach</a>
+      <a href="#cv" class="i18n" data-en="CV" data-fr="CV">CV</a>
+      <a href="#contact" class="i18n" data-en="Contact" data-fr="Contact">Contact</a>
+      <button id="langToggle" aria-label="Switch language">FR</button>
+    </nav>
+  </div>
+  <div id="modeBar" class="mode-bar" hidden>
+    <span id="modeBarText"></span>
+    <button id="modeBarSwitch" class="mode-bar-btn"></button>
+    <button id="modeBarAll" class="mode-bar-btn i18n" data-en="View everything" data-fr="Tout afficher">View everything</button>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="netCanvas"></canvas>
+  <div class="hero-inner">
+    
+    <div class="typed-line"><span class="prompt">&gt;</span> <span id="typeTarget" class="type-target"></span><span class="cursor">▌</span></div>
+    <h1 class="i18n" data-en="Power Platform &amp; BI engineer building apps, automations and data solutions." data-fr="Ingénieure Power Platform &amp; BI : applications, automatisations et solutions data.">Power Platform &amp; BI engineer building apps, automations and data solutions.</h1>
+    <p class="lede i18n" data-en="I turn complex business processes into clear, useful digital solutions — and I bring the same step-by-step mindset to teaching." data-fr="Je transforme des processus métiers complexes en solutions numériques claires et utiles — avec la même approche pédagogique, étape par étape, dans l'enseignement.">I turn complex business processes into clear, useful digital solutions — and I bring the same step-by-step mindset to teaching.</p>
+
+    <p class="choice-prompt i18n" data-en="Which side would you like to see?" data-fr="Quel côté voulez-vous voir ?">Which side would you like to see?</p>
+    <div class="mode-choice">
+      <a href="#skills" class="mode-card mode-card-dev" data-mode="dev">
+        <span class="mode-title i18n" data-en="Developer &amp; BI" data-fr="Développeuse &amp; BI">Developer &amp; BI</span>
+        <span class="mode-sub i18n" data-en="Power Platform, BI, automation" data-fr="Power Platform, BI, automatisation">Power Platform, BI, automation</span>
+      </a>
+      <a href="#teach" class="mode-card mode-card-teach" data-mode="teach">
+        <span class="mode-title i18n" data-en="Teacher" data-fr="Enseignante">Teacher</span>
+        <span class="mode-sub i18n" data-en="Clear, personalized learning" data-fr="Apprentissage clair et personnalisé">Clear, personalized learning</span>
+      </a>
+    </div>
+
+    <div class="hero-secondary">
+      <a href="#cv" class="hero-link i18n" data-en="View my CV" data-fr="Voir mon CV">View my CV</a>
+      <span class="dot">·</span>
+      <a href="#contact" class="hero-link i18n" data-en="Get in touch" data-fr="Me contacter">Get in touch</a>
+      <span class="dot">·</span>
+      <a href="#about" id="viewAllLink" class="hero-link i18n" data-en="View everything" data-fr="Tout afficher">View everything</a>
+    </div>
+  </div>
+  <div class="scroll-hint i18n" data-en="Scroll ↓" data-fr="Défiler ↓">Scroll ↓</div>
+</section>
+
+<div class="flow">
+
+  <div class="node reveal" id="about">
+    <h2 class="i18n" data-en="Who I am" data-fr="Qui je suis">Who I am</h2>
+    <p class="i18n"
+      data-en="I'm an engineer specialized in Power Platform and Business Intelligence. I completed a work-study program as a Power Platform &amp; BI Developer at La Poste Groupe in Paris, and graduated in 2026 with a Mastère in Development &amp; Data alongside my engineering degree in Distributed Networks &amp; Applications (2025) and a Master's in Networks &amp; Telecommunications (2020). I also hold certifications including Cisco CCNA and Fortinet NSE — a solid networking foundation, even though my career path has moved toward Power Platform and BI."
+      data-fr="Je suis ingénieure spécialisée en Power Platform et Business Intelligence. J'ai terminé mon alternance en tant que Développeuse Power Platform &amp; BI chez La Poste Groupe à Paris, et obtenu en 2026 mon Mastère en Développement et Data, en complément de mon diplôme d'ingénieur en Réseaux et Applications Distribuées (2025) et de mon Master 2 en Réseaux et Télécommunications (2020). Je suis également certifiée Cisco CCNA et Fortinet NSE — une base solide en réseaux, même si mon parcours s'est orienté vers le Power Platform et la BI.">
+      I'm an engineer specialized in Power Platform and Business Intelligence. I completed a work-study program as a Power Platform &amp; BI Developer at La Poste Groupe in Paris, and graduated in 2026 with a Mastère in Development &amp; Data alongside my engineering degree in Distributed Networks &amp; Applications (2025) and a Master's in Networks &amp; Telecommunications (2020). I also hold certifications including Cisco CCNA and Fortinet NSE — a solid networking foundation, even though my career path has moved toward Power Platform and BI.
+    </p>
+    <p class="i18n"
+      data-en="The same instinct drives both sides of my work: take a messy manual process — or a hard concept — and break it into clear, ordered steps someone else can actually use. I love transmitting knowledge, whether it's to a business user adopting a new app or a student working through a lesson."
+      data-fr="Le même réflexe guide les deux facettes de mon travail : prendre un processus manuel confus — ou un concept difficile — et le décomposer en étapes claires que quelqu'un d'autre peut réellement utiliser. J'aime transmettre des connaissances, que ce soit à un utilisateur métier qui adopte une nouvelle application ou à un élève qui progresse dans une leçon.">
+      The same instinct drives both sides of my work: take a messy manual process — or a hard concept — and break it into clear, ordered steps someone else can actually use. I love transmitting knowledge, whether it's to a business user adopting a new app or a student working through a lesson.
+    </p>
+  </div>
+
+  <div class="node reveal" id="cv">
+    <h2 class="i18n" data-en="My CV" data-fr="Mon CV">My CV</h2>
+    <div class="cv-card">
+      <div>
+        <h3 class="i18n" data-en="Full résumé, one click away" data-fr="CV complet, en un clic">Full résumé, one click away</h3>
+        <p class="i18n" data-en="View it online or download the PDF." data-fr="Consultez-le en ligne ou téléchargez le PDF.">View it online or download the PDF.</p>
+      </div>
+      <div class="cv-actions">
+        <a href="cv.pdf" target="_blank" rel="noopener" class="btn btn-primary i18n" data-en="View CV" data-fr="Voir le CV">View CV</a>
+        <a href="cv.pdf" download class="btn btn-ghost i18n" data-en="Download PDF" data-fr="Télécharger le PDF">Download PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="node reveal" id="skills" data-mode="dev">
+    <h2 class="i18n" data-en="Technical competencies" data-fr="Compétences techniques">Technical competencies</h2>
+    <p class="i18n" data-en="Click a tier to open it." data-fr="Cliquez sur un niveau pour l'ouvrir.">Click a tier to open it.</p>
+
+    <details class="tier" open>
+      <summary><span class="i18n" data-en="Core practice" data-fr="Cœur de métier">Core practice</span><span class="arrow">▶</span></summary>
+      <div class="tier-body">
+        <div class="pill-row">
+          <span class="pill">Power Apps — Canvas &amp; Model-driven</span><span class="pill">Power Fx</span>
+          <span class="pill">Power Automate — approvals, HTTP/REST, scheduled flows</span>
+          <span class="pill">Power BI — Power Query, DAX, data modelling</span>
+          <span class="pill">SharePoint Lists</span><span class="pill">Dataverse</span>
+          <span class="pill">Copilot &amp; Copilot Studio</span><span class="pill">Power Platform Admin Center</span>
+          <span class="pill">Scrum / Agile</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="tier">
+      <summary><span class="i18n" data-en="Supporting skills" data-fr="Compétences complémentaires">Supporting skills</span><span class="arrow">▶</span></summary>
+      <div class="tier-body">
+        <div class="pill-row">
+          <span class="pill">REST APIs / HTTP / JSON</span><span class="pill">SQL / MySQL</span>
+          <span class="pill">Python (Pandas, NumPy)</span><span class="pill">PowerShell</span>
+          <span class="pill">HTML / CSS / JS</span><span class="pill">Docker</span><span class="pill">Git / GitHub / GitLab</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="tier">
+      <summary><span class="i18n" data-en="Foundation — networking" data-fr="Base — réseaux">Foundation — networking</span><span class="arrow">▶</span></summary>
+      <div class="tier-body">
+        <div class="pill-row">
+          <span class="pill i18n" data-en="Master's, Networks &amp; Telecom" data-fr="Master Réseaux &amp; Télécom">Master's, Networks &amp; Telecom</span>
+          <span class="pill">Cisco CCNA</span><span class="pill">Fortinet NSE</span><span class="pill">AZ-900 Azure</span>
+        </div>
+        <p class="fine i18n" data-en="Strong networking foundation complementing my work with cloud platforms, APIs and distributed systems." data-fr="Une base solide en réseaux qui complète mon travail sur les plateformes cloud, les API et les systèmes distribués.">Strong networking foundation complementing my work with cloud platforms, APIs and distributed systems.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="node reveal" id="experience" data-mode="dev">
+    <h2 class="i18n" data-en="Experience" data-fr="Expérience professionnelle">Experience</h2>
+    <div class="entry-list">
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Power Platform &amp; BI Developer (Apprenticeship) — La Poste Groupe, Paris" data-fr="Développeuse Power Platform &amp; BI (Alternance) — La Poste Groupe, Paris">Power Platform &amp; BI Developer (Work-study) — La Poste Groupe, Paris</h3>
+          <span class="entry-meta i18n" data-en="Oct 2025 – 2026" data-fr="Oct. 2025 – 2026">Oct 2025 – Sept 2026</span>
+        </div>
+        <p class="i18n" data-en="Designed Power Apps and Power BI solutions from business requirements; automated approvals, notifications and operational workflows with Power Automate and REST APIs; worked with large-scale business data; contributed to Copilot/Copilot Studio use cases, solution documentation, governance, user support and Agile delivery." data-fr="Conception de solutions Power Apps et Power BI à partir des besoins métiers ; automatisation des approbations, notifications et processus opérationnels avec Power Automate et API REST ; travail sur des données métiers à grande échelle ; contribution aux cas d'usage Copilot/Copilot Studio, à la documentation, à la gouvernance, au support utilisateurs et à la livraison Agile.">Designed Power Apps and Power BI solutions from business requirements; automated approvals, notifications and operational workflows with Power Automate and REST APIs; worked with large-scale business data; contributed to Copilot/Copilot Studio use cases, solution documentation, governance, user support and Agile delivery.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Power Platform Developer (Internship) — Eurofins Biopharma Product Testing, Les Ulis" data-fr="Développeuse Power Platform (Stage) — Eurofins Biopharma Product Testing, Les Ulis">Power Platform Developer (Internship) — Eurofins Biopharma Product Testing, Les Ulis</h3>
+          <span class="entry-meta i18n" data-en="Mar–Aug 2025" data-fr="Mars–Août 2025">Mar–Aug 2025</span>
+        </div>
+        <p class="i18n" data-en="Digitized a lab process end-to-end, replacing manual Excel entry with a Power App to scan chemical products; automated RPA reporting (PDF, notifications, real-time KPI dashboards) with Power Automate and Power BI; trained users and wrote technical documentation." data-fr="Digitalisation d'un processus laboratoire de bout en bout, remplaçant la saisie manuelle Excel par une application Power Apps de scan de produits chimiques ; automatisation RPA du reporting (PDF, notifications, dashboards KPI temps réel) via Power Automate et Power BI ; formation des utilisateurs et documentation technique.">Digitized a lab process end-to-end, replacing manual Excel entry with a Power App to scan chemical products; automated RPA reporting (PDF, notifications, real-time KPI dashboards) with Power Automate and Power BI; trained users and wrote technical documentation.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Mobile App Developer (Full-time) — IM, Algiers" data-fr="Développeuse Mobile (CDI) — IM, Alger">Mobile App Developer (Full-time) — IM, Algiers</h3>
+          <span class="entry-meta">2021–2022</span>
+        </div>
+        <p class="i18n" data-en="Designed a mobile app to visualize customer consumption data; integrated a user assistant connected to APIs to simulate real data; built interactive interfaces." data-fr="Conception d'une application mobile de visualisation de la consommation client ; intégration d'un assistant utilisateur connecté à des API pour simuler des données réelles ; création d'interfaces interactives.">Designed a mobile app to visualize customer consumption data; integrated a user assistant connected to APIs to simulate real data; built interactive interfaces.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Data &amp; BI Analyst (Internship) — Ooredoo, Algiers" data-fr="Analyste Data &amp; BI (Stage) — Ooredoo, Alger">Data &amp; BI Analyst (Internship) — Ooredoo, Algiers</h3>
+          <span class="entry-meta i18n" data-en="Mar–Aug 2020" data-fr="Mars–Août 2020">Mar–Aug 2020</span>
+        </div>
+        <p class="i18n" data-en="Analyzed customer behavior (subscriptions, calls, consumption) to improve user experience; cleaned and processed large datasets; built dynamic dashboards for commercial teams." data-fr="Analyse des comportements clients (abonnement, appels, consommation) pour améliorer l'expérience utilisateur ; nettoyage et traitement de données volumineuses ; création de dashboards dynamiques pour les équipes commerciales.">Analyzed customer behavior (subscriptions, calls, consumption) to improve user experience; cleaned and processed large datasets; built dynamic dashboards for commercial teams.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="node reveal" id="projects" data-mode="dev">
+    <h2 class="i18n" data-en="Projects" data-fr="Projets">Projects</h2>
+    <div class="project-list">
+      <div class="project">
+        <div>
+          <h3>You &amp; AI — Serious Game "Mutation 2035"</h3>
+          <p class="i18n" data-en="Scrum Master for a 3-person team across 11 sprints (Godot 4 + Supabase); managed a backlog of 40+ user stories; delivered the MVP 100% by Sprint 11, with 6 risks identified and treated." data-fr="Scrum Master pour une équipe de 3 sur 11 sprints (Godot 4 + Supabase) ; gestion d'un backlog de plus de 40 user stories ; MVP livré à 100% au Sprint 11, 6 risques identifiés et traités.">Scrum Master for a 3-person team across 11 sprints (Godot 4 + Supabase); managed a backlog of 40+ user stories; delivered the MVP 100% by Sprint 11, with 6 risks identified and treated.</p>
+        </div>
+        <span class="tag i18n" data-en="Scrum Master" data-fr="Scrum Master">Scrum Master</span>
+      </div>
+      <div class="project">
+        <div>
+          <h3 class="i18n" data-en="Intelligent Cooking Assistant" data-fr="Assistant Culinaire Intelligent">Intelligent Cooking Assistant</h3>
+          <p class="i18n" data-en="Built an intelligent culinary assistant combining image recognition and automatic recipe generation in an interactive application. Stack: Python, PyTorch/TensorFlow, YOLO, Stable Diffusion, OpenCV, Streamlit and MySQL." data-fr="Développement d'un assistant culinaire intelligent combinant reconnaissance d'images et génération automatique de recettes dans une application interactive. Stack : Python, PyTorch/TensorFlow, YOLO, Stable Diffusion, OpenCV, Streamlit et MySQL.">Built an intelligent culinary assistant combining image recognition and automatic recipe generation in an interactive application. Stack: Python, PyTorch/TensorFlow, YOLO, Stable Diffusion, OpenCV, Streamlit and MySQL.</p>
+        </div>
+        <span class="tag">Deep Learning</span>
+      </div>
+      <div class="project">
+        <div>
+          <h3 class="i18n" data-en="Real-Time Facial Recognition" data-fr="Reconnaissance Faciale en Temps Réel">Real-Time Facial Recognition</h3>
+          <p class="i18n" data-en="Built a real-time face detection and recognition system with Python, PyTorch and OpenCV, and evaluated performance across different image datasets." data-fr="Développement d'un système de détection et reconnaissance faciale en temps réel avec Python, PyTorch et OpenCV, avec évaluation des performances sur différents jeux d'images.">Built a real-time face detection and recognition system with Python, PyTorch and OpenCV, and evaluated performance across different image datasets.</p>
+        </div>
+        <span class="tag i18n" data-en="Computer Vision" data-fr="Vision par ordinateur">Computer Vision</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="node reveal" id="teach" data-mode="teach">
+    <h2 class="i18n" data-en="What I teach" data-fr="Ce que j'enseigne">What I teach</h2>
+    <p class="i18n" data-en="I've taught English from primary school through adult level, and I also teach French, Math, Computer Science and Arabic. Lessons are one-on-one or in small groups, and I tailor every plan to how the student actually learns." data-fr="J'ai enseigné l'anglais du primaire à l'âge adulte, et j'enseigne également le français, les mathématiques, l'informatique et l'arabe. Les cours se font en individuel ou en petit groupe, et chaque plan est adapté à la façon dont l'élève apprend réellement.">I've taught English from primary school through adult level, and I also teach French, Math, Computer Science and Arabic. Lessons are one-on-one or in small groups, and I tailor every plan to how the student actually learns.</p>
+
+    <h3 class="teach-subhead i18n" data-en="Teaching experience" data-fr="Expérience d'enseignement">Teaching experience</h3>
+    <div class="entry-list">
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="English Teacher — Primary School, Algeria" data-fr="Professeure d'anglais — École primaire, Algérie">English Teacher — Primary School, Algeria</h3>
+          <span class="entry-meta i18n" data-en="1 year" data-fr="1 an">1 year</span>
+        </div>
+        <p class="i18n" data-en="Taught English to primary school students — building foundational vocabulary, pronunciation and confidence in a second language." data-fr="Enseignement de l'anglais à des élèves du primaire — construction du vocabulaire, de la prononciation et de la confiance dans une seconde langue.">Taught English to primary school students — building foundational vocabulary, pronunciation and confidence in a second language.</p>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="English for Specific Purposes (ESP) Teacher — Eplanet Educational System, Algeria" data-fr="Professeure d'anglais sur objectifs spécifiques (ESP) — Eplanet Educational System, Algérie">English for Specific Purposes (ESP) Teacher — Eplanet Educational System, Algeria</h3>
+          <span class="entry-meta i18n" data-en="1 year" data-fr="1 an">1 year</span>
+        </div>
+        <p class="i18n" data-en="Taught English tailored to specific professional and academic goals, adapting lessons to learners' real-world needs." data-fr="Enseignement de l'anglais adapté à des objectifs professionnels et académiques spécifiques, avec des cours ajustés aux besoins réels des apprenants.">Taught English tailored to specific professional and academic goals, adapting lessons to learners' real-world needs.</p>
+      </div>
+      <div class="entry">
+  <div class="entry-head">
+    <h3 class="i18n"
+        data-en="Math Tutor — Sorbonne Paris Nord"
+        data-fr="Tutrice en mathématiques — Sorbonne Paris Nord">
+      Math Tutor — Sorbonne Paris Nord
+    </h3>
+
+    <span class="entry-meta i18n"
+          data-en="Preparatory & Bachelor's students"
+          data-fr="Étudiants en prépa & Licence">
+      Preparatory & Bachelor's students
+    </span>
+  </div>
+
+  <p class="i18n"
+     data-en="Provided mathematics tutoring to preparatory and Bachelor's degree students, with clear, step-by-step explanations adapted to their level and academic needs."
+     data-fr="Tutorat en mathématiques auprès d'étudiants en classe préparatoire et en Licence, avec des explications claires et progressives adaptées à leur niveau et à leurs besoins académiques.">
+    Provided mathematics tutoring to preparatory and Bachelor's degree students, with clear, step-by-step explanations adapted to their level and academic needs.
+  </p>
+</div>
+    </div>
+
+    <h3 class="teach-subhead i18n" data-en="Subjects" data-fr="Matières">Subjects</h3>
+
+    <div class="subject-grid subject-grid-rich">
+      <div class="subject-rich">
+        <h3> Math</h3>
+        <p class="i18n" data-en="From basic arithmetic to exam prep — broken into clear, ordered steps, no rote memorizing." data-fr="Des bases du calcul à la préparation aux examens — décomposé en étapes claires, sans par-cœur.">From basic arithmetic to exam prep — broken into clear, ordered steps, no rote memorizing.</p>
+        <span class="subject-level i18n" data-en="All levels" data-fr="Tous niveaux">All levels</span>
+      </div>
+      <div class="subject-rich">
+        <h3 class="i18n" data-en=" Computer Science" data-fr=" Informatique"> Computer Science</h3>
+        <p class="i18n" data-en="Programming logic, algorithms and real tools — taught by someone who builds software professionally." data-fr="Logique de programmation, algorithmes et outils réels — enseignés par quelqu'un qui développe des logiciels professionnellement.">Programming logic, algorithms and real tools — taught by someone who builds software professionally.</p>
+        <span class="subject-level i18n" data-en="Intro → advanced" data-fr="Débutant → avancé">Intro → advanced</span>
+      </div>
+      <div class="subject-rich">
+        <h3 class="i18n" data-en=" English" data-fr=" Anglais"> English</h3>
+        <p class="i18n" data-en="Grammar, conversation and exam prep (TOEIC-certified myself), from a child's first words to professional fluency." data-fr="Grammaire, conversation et préparation aux examens (certifiée TOEIC moi-même), des premiers mots d'un enfant à l'aisance professionnelle.">Grammar, conversation and exam prep (TOEIC-certified myself), from a child's first words to professional fluency.</p>
+        <span class="subject-level i18n" data-en="Primary → Adult" data-fr="Primaire → Adulte">Primary → Adult</span>
+      </div>
+      <div class="subject-rich">
+        <h3 class="i18n" data-en=" French" data-fr=" Français"> French</h3>
+        <p class="i18n" data-en="Bilingual-level French — grammar, writing and conversational fluency at any pace." data-fr="Français de niveau bilingue — grammaire, écriture et aisance à l'oral, à votre rythme.">Bilingual-level French — grammar, writing and conversational fluency at any pace.</p>
+        <span class="subject-level i18n" data-en="Bilingual" data-fr="Bilingue">Bilingual</span>
+      </div>
+      <div class="subject-rich">
+        <h3 class="i18n" data-en=" Arabic" data-fr=" Arabe"> Arabic</h3>
+        <p class="i18n" data-en="Reading, writing and conversation, tailored to your goals." data-fr="Lecture, écriture et conversation, adaptées à vos objectifs.">Reading, writing and conversation, tailored to your goals.</p>
+        <span class="subject-level i18n" data-en="On request" data-fr="Sur demande">On request</span>
+      </div>
+    </div>
+
+    <div class="approach-row">
+      <div class="approach-item">
+        <strong class="i18n" data-en="Personalized plans" data-fr="Plans personnalisés">Personalized plans</strong>
+        <p class="i18n" data-en="Every student gets a plan built around how they actually learn, not a fixed curriculum." data-fr="Chaque élève a un plan construit autour de sa façon d'apprendre, pas un programme figé.">Every student gets a plan built around how they actually learn, not a fixed curriculum.</p>
+      </div>
+      <div class="approach-item">
+        <strong class="i18n" data-en="Step-by-step clarity" data-fr="Clarté étape par étape">Step-by-step clarity</strong>
+        <p class="i18n" data-en="The same instinct I use to design a Power Automate flow — break it down until it's simple." data-fr="Le même réflexe que pour concevoir un flux Power Automate — décomposer jusqu'à ce que ce soit simple.">The same instinct I use to design a Power Automate flow — break it down until it's simple.</p>
+      </div>
+      <div class="approach-item">
+        <strong class="i18n" data-en="Flexible format" data-fr="Format flexible">Flexible format</strong>
+        <p class="i18n" data-en="One-on-one or small-group lessons, with a format adapted to the learner and the objective." data-fr="Cours individuels ou en petit groupe, avec un format adapté à l'apprenant et à son objectif.">One-on-one or small-group lessons, with a format adapted to the learner and the objective.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="node reveal">
+    <h2 class="i18n" data-en="Education &amp; certifications" data-fr="Formations &amp; certifications">Education &amp; certifications</h2>
+    <div class="entry-list">
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Mastère, Development &amp; Data — H3 Hitema, Paris" data-fr="Mastère, Développement &amp; Data — H3 Hitema, Paris"> Mastère, Development &amp; Data — H3 Hitema, Paris
+    </h3>
+          <span class="entry-meta">2026</span>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Engineering degree, Distributed Networks &amp; Applications — École d'Ingénieurs Sup Galilée, Sorbonne Paris Nord" data-fr="Diplôme d'Ingénieur, Réseaux et Applications Distribuées — École d'Ingénieurs Sup Galilée, Sorbonne Paris Nord">Engineering degree, Distributed Networks &amp; Applications — École d'Ingénieurs Sup Galilée, Sorbonne Paris Nord</h3>
+          <span class="entry-meta">2025</span>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head">
+          <h3 class="i18n" data-en="Master 2, Networks &amp; Telecommunications — University of Boumerdès" data-fr="Master 2, Réseaux et Télécommunications — Université de Boumerdès">Master 2, Networks &amp; Telecommunications — University of Boumerdès</h3>
+          <span class="entry-meta">2020</span>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><h3 class="i18n" data-en="Certifications" data-fr="Certifications">Certifications</h3></div>
+        <div class="pill-row">
+          <span class="pill">PL-300 Power BI</span><span class="pill">PL-900 Power Platform</span><span class="pill">AZ-900 Azure</span><span class="pill">Cisco CCNA</span><span class="pill">Fortinet NSE</span>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-head"><h3 class="i18n" data-en="Languages" data-fr="Langues">Languages</h3></div>
+        <p class="i18n" data-en="French (bilingual) · English (professional, TOEIC-certified) · Arabic" data-fr="Français (bilingue) · Anglais (professionnel, certifié TOEIC) · Arabe" style="margin:0;">French (bilingual) · English (professional, TOEIC-certified) · Arabic</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="node reveal" id="contact">
+    <h2 class="i18n" data-en="Let's connect" data-fr="Restons en contact">Let's connect</h2>
+    <p class="i18n" data-en="Whether it's a Power Platform build, a BI dashboard, or a lesson — reach out." data-fr="Que ce soit pour un projet Power Platform, un dashboard BI, ou un cours — contactez-moi.">Whether it's a Power Platform build, a BI dashboard, or a lesson — reach out.</p>
+
+    <form class="contact-form" action="https://formspree.io/f/mppakqnl" method="POST">
+      <div class="form-row">
+        <label for="name" class="i18n" data-en="Name" data-fr="Nom">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="email" class="i18n" data-en="Email" data-fr="Email">Email</label>
+        <input type="email" id="email" name="_replyto" required>
+      </div>
+      <div class="form-row">
+        <label for="message" class="i18n" data-en="Message" data-fr="Message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <input type="text" name="_gotcha" style="display:none">
+      <div>
+        <button type="submit" class="btn btn-primary i18n" data-en="Send message" data-fr="Envoyer">Send message</button>
+      </div>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+
+    <div class="contact-alt">
+      <div class="contact-card">
+        <div class="label i18n" data-en="Email" data-fr="Email">Email</div>
+        <a href="mailto:you@example.com">you@example.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="label">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/lydia-harrache/" target="_blank" rel="noopener">https://www.linkedin.com/in/lydia-harrache/</a>
+      </div>
+      <div class="contact-card">
+        <div class="label i18n" data-en="Location" data-fr="Localisation">Location</div>
+        Paris, France
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © <span id="year"></span> Lydia Harrache. <span class="i18n" data-en="Built with a flow, not a template." data-fr="Construit comme un flux, pas un modèle.">Built with a flow, not a template.</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.15});
+    revealEls.forEach(el=>io.observe(el));
+  } else { revealEls.forEach(el=>el.classList.add('in')); }
+
+  // Mode chooser: Dev vs Teaching
+  (function(){
+    const body = document.body;
+    const modeBar = document.getElementById('modeBar');
+    const modeBarText = document.getElementById('modeBarText');
+    const modeBarSwitch = document.getElementById('modeBarSwitch');
+    const modeBarAll = document.getElementById('modeBarAll');
+    let currentMode = 'dev'; // 'dev' | 'teach' | 'all'
+
+    const labels = {
+      dev:   { en: 'Viewing: Developer & BI', fr: 'Affichage : Développeuse & BI' },
+      teach: { en: 'Viewing: Teacher', fr: 'Affichage : Enseignante' },
+      all:   { en: 'Viewing: Everything', fr: 'Affichage : Tout' }
+    };
+    const switchLabels = {
+      dev:   { en: 'Switch to Teaching', fr: 'Passer à Enseignement' },
+      teach: { en: 'Switch to Developer', fr: 'Passer à Développeur' }
+    };
+
+    function refreshBarText(){
+      const lang = window.getCurrentLang ? window.getCurrentLang() : 'en';
+      if(currentMode === 'all'){
+        modeBarText.textContent = labels.all[lang];
+        modeBarSwitch.style.display = 'none';
+      } else if(currentMode){
+        modeBarText.textContent = labels[currentMode][lang];
+        modeBarSwitch.textContent = switchLabels[currentMode][lang];
+        modeBarSwitch.style.display = '';
+      }
+    }
+
+    function setMode(mode, opts){
+      opts = opts || {};
+      body.classList.remove('pre-choice','mode-dev','mode-teach','mode-all');
+      if(mode === 'all'){
+        body.classList.add('mode-all');
+      } else {
+        body.classList.add('mode-' + mode);
+      }
+      currentMode = mode;
+      modeBar.hidden = false;
+      refreshBarText();
+      if(opts.scrollTo){
+        setTimeout(()=>{
+          const target = document.querySelector(opts.scrollTo);
+          if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        }, 30);
+      }
+    }
+
+    document.querySelectorAll('.mode-card').forEach(card=>{
+      card.addEventListener('click', function(e){
+        e.preventDefault();
+        const mode = this.getAttribute('data-mode');
+        setMode(mode, {scrollTo: this.getAttribute('href')});
+      });
+    });
+
+    document.getElementById('viewAllLink').addEventListener('click', function(e){
+      e.preventDefault();
+      setMode('all', {scrollTo:'#about'});
+    });
+
+    modeBarAll.addEventListener('click', ()=> setMode('all'));
+    modeBarSwitch.addEventListener('click', ()=>{
+      if(currentMode === 'dev') setMode('teach', {scrollTo:'#teach'});
+      else if(currentMode === 'teach') setMode('dev', {scrollTo:'#skills'});
+    });
+
+    // Any nav link click before a mode is chosen reveals everything
+    document.querySelectorAll('.nav-inner a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', function(e){
+        if(body.classList.contains('pre-choice')){
+          e.preventDefault();
+          setMode('all', {scrollTo: this.getAttribute('href')});
+        }
+      });
+    });
+
+    // Recruiter-first default: Developer & BI content is visible immediately.
+    modeBar.hidden = false;
+    refreshBarText();
+
+    window.__refreshModeBar = refreshBarText;
+  })();
+
+  let currentLang = 'en';
+  const toggleBtn = document.getElementById('langToggle');
+  const htmlRoot = document.getElementById('html-root');
+
+  const phrasesEn = ['Power Platform Developer', 'BI Engineer', 'Teacher'];
+  const phrasesFr = ['Développeuse Power Platform', 'Ingénieure BI', 'Enseignante'];
+  let activePhrases = phrasesEn;
+  let typingGen = 0;
+  const reduceMotionTyping = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function startTyping(){
+    typingGen++;
+    const myGen = typingGen;
+    const target = document.getElementById('typeTarget');
+    if(!target) return;
+    if(reduceMotionTyping){ target.textContent = activePhrases[0]; return; }
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+    function tick(){
+      if(myGen !== typingGen) return;
+      const phrase = activePhrases[phraseIdx % activePhrases.length];
+      if(!deleting){
+        charIdx++;
+        target.textContent = phrase.slice(0, charIdx);
+        if(charIdx === phrase.length){ deleting = true; setTimeout(tick, 1300); return; }
+      } else {
+        charIdx--;
+        target.textContent = phrase.slice(0, charIdx);
+        if(charIdx === 0){ deleting = false; phraseIdx++; }
+      }
+      setTimeout(tick, deleting ? 30 : 65);
+    }
+    tick();
+  }
+
+  function applyLang(lang){
+    document.querySelectorAll('.i18n').forEach(el=>{
+      const val = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+      if(val !== null) el.innerHTML = val;
+    });
+    htmlRoot.setAttribute('lang', lang);
+    toggleBtn.textContent = lang === 'fr' ? 'EN' : 'FR';
+    currentLang = lang;
+    activePhrases = lang === 'fr' ? phrasesFr : phrasesEn;
+    startTyping();
+    if(window.__refreshModeBar) window.__refreshModeBar();
+  }
+  window.getCurrentLang = () => currentLang;
+  toggleBtn.addEventListener('click', ()=> applyLang(currentLang === 'en' ? 'fr' : 'en'));
+  startTyping();
+
+  // Formspree AJAX submit (avoids page navigation)
+  const form = document.querySelector('.contact-form');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    try{
+      const res = await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } });
+      if(res.ok){
+        status.textContent = currentLang === 'fr' ? 'Message envoyé, merci !' : 'Message sent, thank you!';
+        form.reset();
+      } else {
+        status.textContent = currentLang === 'fr' ? "Erreur d'envoi, réessayez." : 'Something went wrong, try again.';
+      }
+    } catch(err){
+      status.textContent = currentLang === 'fr' ? "Erreur d'envoi, réessayez." : 'Something went wrong, try again.';
+    }
+  });
+
+  // Subtle network-particle background in hero
+  (function(){
+    const canvas = document.getElementById('netCanvas');
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.parentElement;
+    let w,h,dots;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w = canvas.width = hero.offsetWidth;
+      h = canvas.height = hero.offsetHeight;
+      const count = Math.min(55, Math.floor((w*h)/16000));
+      dots = Array.from({length:count}, ()=>({
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = '#12b3a3';
+      dots.forEach(d=>{
+        ctx.beginPath(); ctx.arc(d.x,d.y,1.8,0,Math.PI*2); ctx.fill();
+      });
+      for(let i=0;i<dots.length;i++){
+        for(let j=i+1;j<dots.length;j++){
+          const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
+          const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<120){
+            ctx.strokeStyle = 'rgba(23,32,58,'+(0.10*(1-dist/120))+')';
+            ctx.lineWidth=1;
+            ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke();
+          }
+        }
+      }
+    }
+    function step(){
+      dots.forEach(d=>{
+        d.x+=d.vx; d.y+=d.vy;
+        if(d.x<0||d.x>w) d.vx*=-1;
+        if(d.y<0||d.y>h) d.vy*=-1;
+      });
+      draw();
+      if(!reduceMotion) requestAnimationFrame(step);
+    }
+    window.addEventListener('resize', ()=>{ resize(); draw(); });
+    resize();
+    if(reduceMotion){ draw(); } else { step(); }
+  })();
+</script>
+
+</body>
+</html>
